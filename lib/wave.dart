@@ -217,6 +217,7 @@ class WaveWidget extends StatefulWidget {
   final Color? backgroundColor;
   final DecorationImage? backgroundImage;
   final bool isLoop;
+  final Curves easeCurve;
 
   WaveWidget({
     required this.config,
@@ -229,6 +230,7 @@ class WaveWidget extends StatefulWidget {
     this.backgroundColor,
     this.backgroundImage,
     this.isLoop = true,
+    required this.easeCurve,
   });
 
   @override
@@ -264,7 +266,7 @@ class _WaveWidgetState extends State<WaveWidget> with TickerProviderStateMixin {
         value.addStatusListener((status) {
           switch (status) {
             case AnimationStatus.completed:
-              controller.reset();
+              controller.reset()
               break;
             case AnimationStatus.dismissed:
               controller.forward();
