@@ -254,7 +254,7 @@ class _WaveWidgetState extends State<WaveWidget> with TickerProviderStateMixin {
 
       _wavePhaseValues = _waveControllers.map((controller) {
         CurvedAnimation _curve =
-            CurvedAnimation(parent: controller, curve: Curves.linear);
+            CurvedAnimation(parent: controller, curve: Curves.ease);
         Animation<double> value = Tween(
           begin: widget.wavePhase,
           end: 360 + widget.wavePhase,
@@ -264,7 +264,7 @@ class _WaveWidgetState extends State<WaveWidget> with TickerProviderStateMixin {
         value.addStatusListener((status) {
           switch (status) {
             case AnimationStatus.completed:
-              controller.reverse();
+              controller.reset();
               break;
             case AnimationStatus.dismissed:
               controller.forward();
